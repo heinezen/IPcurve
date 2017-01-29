@@ -1,0 +1,14 @@
+A new client connected from 100007f:3153.
+FilE connected
+wanted delay: 61
+mapcoll at 353 470
+mapcoll at 353 471
+mapcoll at 354 470
+mapcoll at 354 471
+mapcoll at 355 470
+mapcoll at 355 471
+wanted delay: 61
+FilE disconected.
+end of game
+server closed!
+ENDOFAPP
