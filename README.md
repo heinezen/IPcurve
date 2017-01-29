@@ -27,3 +27,5 @@ Here is an overview of what is available in this repository.
 | 1.0      | IPCurve100Win32.zip<br>IPCurve100Linux.zip<br>IPCurve100OSX.zip <br> IPCurve100Source.zip <br> ipcurve_1.0_i386.deb | **yes** | **yes** | no    | no      |
 
 Every contribution is appreciated.
+
+![kurve](https://raw.githubusercontent.com/heinezen/IPcurve/master/screenshots/schild.png "Das "Achtung, Kurve" Schild:")
