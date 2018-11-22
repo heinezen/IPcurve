@@ -1,0 +1,113 @@
+<HTML>
+<HEAD>
+
+<TITLE>Rakkarsoft</TITLE>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"></HEAD>
+<meta name="title" content="RakNet - Advanced multiplayer game networking API">
+</HEAD>
+<BODY BGCOLOR="#ffffff" LINK="#003399" vlink="#003399" alink="#003399" LEFTMARGIN="0" TOPMARGIN="0" MARGINWIDTH="0" MARGINHEIGHT="0"">
+<img src="rakkarsoftllc.gif" alt="Rakkarsoft LLC" width="215" height="60"><BR><BR>
+
+<table width="100%" border="0"><tr><td bgcolor="#6699CC"><font color="#FFFFFF" size="3" face="Arial, Helvetica, sans-serif"><strong> 
+<img src="spacer.gif" width="8" height="1">Introduction</strong></font></td></tr></table>
+<TABLE BORDER="0" CELLPADDING="10" CELLSPACING="0" WIDTH="100%"><TR>
+  <TD>
+<FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" CLASS="G10" COLOR="#3366CC"><strong>Last Updated for RakNet 3.0 Beta
+23/12/2006.  See readme.txt for the current version number.
+</strong></FONT>
+<p>
+<font class="G10" color="#666666" face="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2">
+RakNet is a free C++ UDP based network library designed to allow programmers to 
+add response time-critical network capabilities to their applications. It is 
+mostly used for games, but is application independent.&nbsp; RakNet is designed 
+for speed, application independence, platform independence, and feature set.
+</font>
+</TD></TR></TABLE>
+<table width="100%" border="0"><tr><td bgcolor="#6699CC"><font color="#FFFFFF" size="3" face="Arial, Helvetica, sans-serif"><strong> 
+<img src="spacer.gif" width="8" height="1">Quick Start</strong></font></td></tr></table>
+<TABLE BORDER="0" CELLPADDING="10" CELLSPACING="0" WIDTH="100%"><TR><TD>
+<FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" CLASS="G10" COLOR="#666666">
+<A HREF="introduction.html">Introduction</A><BR>
+<A HREF="systemoverview.html">System Overview</A><BR>
+<A HREF="detailedimplementation.html">Detailed Implementation</A><BR>
+<A HREF="tutorial.html">Tutorial</A><BR>
+<A HREF="compilersetup.html">Compiler Setup</A><BR>
+</TD></TR></TABLE>
+
+<table width="100%" border="0"><tr><td bgcolor="#6699CC"><font color="#FFFFFF" size="3" face="Arial, Helvetica, sans-serif"><strong> 
+<img src="spacer.gif" width="8" height="1">Training Videos</strong></font></td></tr></table>
+<TABLE BORDER="0" CELLPADDING="10" CELLSPACING="0" WIDTH="100%"><TR><TD>
+<FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" CLASS="G10" COLOR="#666666">
+<A HREF="helloworldvideo.html">Hello World</A><BR>
+<A HREF="rpcvideo.html">Remote Procedure Calls</A><BR>
+</TD></TR></TABLE>
+
+
+<table width="100%" border="0"><tr><td bgcolor="#6699CC"><font color="#FFFFFF" size="3" face="Arial, Helvetica, sans-serif"><strong> 
+<img src="spacer.gif" width="8" height="1">Major systems</strong></font></td></tr></table>
+<TABLE BORDER="0" CELLPADDING="10" CELLSPACING="0" WIDTH="100%"><TR><TD>
+
+<FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" CLASS="G10" COLOR="#666666">
+
+<!--<A HREF="distributednetworkobject.html">Distributed Objects</A><BR> - How to automatically synchronize your game classes and member variables.<BR><BR>-->
+
+<A HREF="bitstreams.html">Bitstreams</A><BR> - An overview of RakNet's bitstream class, used throughout the API.<BR><BR>
+<A HREF="remoteprocedurecalls.html">Remote Procedure Calls</A><BR> - How to call functions on remote computers, avoiding the necessity of manually creating packets.<BR><BR>
+<A HREF="timestamping.html">Timestamping your packets</A><BR> - Covers the purpose of timestamps.<BR><BR>
+<A HREF="creatingpackets.html">Creating Packets</A><BR> - How to create custom packets using structures and bitstreams, and how to encode timestamps.<BR><BR>
+<A HREF="sendingpackets.html">Sending Packets</A><BR> - How to send packets already prepared, and what parameters to use.<BR><BR>
+<A HREF="receivingpackets.html">Receiving Packets</A><BR> - How to converting raw data back to a packet you can read via a structure or bitstream.<BR><BR>
+<A HREF="reliabilitytypes.html">Reliability types</A><BR> - Covers parameters you can use to control how data gets sent.<BR><BR>
+<A HREF="networkidobject.html">NetworkIDObject</A><BR>
+ - A Utility class to give each class instance a unique identifier that all systems can share.<BR><BR>
+<A HREF="systemaddresses.html">SystemAddress</A><BR> 
+- Describes the purpose and use of the SystemAddress structure used in packets and in some function parameters.<BR>
+<BR>
+<A HREF="networkmessages.html">Network Messages</A><BR> 
+- Gives an overview of the messages the API will send to the user.  This is also listed in MessageIdentifiers.h.<BR>
+<BR>
+<A HREF="statistics.html">Statistics</A><BR> - The statistics that RakNet provides.<BR><BR>
+<A HREF="secureconnections.html">Secure connections</A><BR> - How to activate and use secure connections.<BR><BR>
+
+<A HREF="plugininterface.html">Plugin Interface</A><BR>
+ - A plug-in system to add functionality to RakNet.<BR><BR>
+
+<A HREF="connectiongraph.html">Connection Graph</A><BR>
+ - <FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" CLASS="G10" COLOR="#666666"> A plug-in that maintains a graph of connections for the entire network</FONT>.<BR>
+ <BR>
+ 
+<A HREF="fullyconnectedmesh.html">Fully Connected Mesh</A><BR> - A plug-in to make all peers connect to all other peers automatically.<BR><BR>
+
+<A HREF="replicamanager.html">Replica Manager</A><BR>
+ - A plug-in that provides management for your game objects and players to make serialization, scoping, and object creation and destruction easier.<BR><BR>
+
+<A HREF="datacompression.html">Data compression</A><BR> - Provides an overview of RakNet's ability to compress network data.<BR><BR>
+
+<A HREF="preprocessordirectives.html">Preprocessor Directives</A><BR> - Enables you to rebuild the library with different code settings.<BR><BR>
+
+<A HREF="networksimulator.html">Network Simulator</A><BR> - Purposely drop and lag packets to see how your game holds up under bad network conditions.<BR><BR>
+
+<A HREF="autopatcher.html">Autopatcher</A><BR> 
+- Overview of the autopatcher included with RakNet.<BR><BR>
+<A HREF="lightweightdatabase.html">Lightweight Database</A><BR> 
+- A simple flat database included with RakNet, useful for a server browser or a lobby server.<BR><BR>
+<A HREF="natpunchthrough.html">NAT punch-through</A><BR> - How to use the master server and master client for NAT Punch-through.<BR><BR>
+<A HREF="rakvoice.html">RakVoice</A><BR> - Overview of RakVoice.  Refer to RakVoice.h for full implementation and function details.<BR><BR>
+<A HREF="samples.html">Samples</A><BR> - An overview of the samples included with RakNet.<BR><BR>
+</FONT>
+
+</TD>
+</TR></TABLE>
+<table width="100%" border="0"><tr><td bgcolor="#6699CC"><font color="#FFFFFF" size="3" face="Arial, Helvetica, sans-serif"><strong> 
+<img src="spacer.gif" width="8" height="1">Support</strong></font></td></tr></table>
+<TABLE BORDER="0" CELLPADDING="10" CELLSPACING="0" WIDTH="100%"><TR><TD>
+<FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" CLASS="G10" COLOR="#666666">
+<A HREF="faq.html">FAQ</A><BR>
+<A HREF="programmingtips.html">Programming Tips</A><BR>
+<A HREF="revisionlog.html">Revision Log</A><BR>
+<A HREF="http://www.rakkarsoft.com/forum">Forum</A><BR>
+<A HREF="mailto:rakkar@rakkarsoft.com">Email Author</A><BR>
+</FONT>
+</TD></TR></TABLE>
+</BODY>
+</HTML>

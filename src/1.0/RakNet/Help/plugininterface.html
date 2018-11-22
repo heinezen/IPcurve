@@ -1,0 +1,87 @@
+<HTML>
+<HEAD>
+
+<TITLE>Plugin Interface</TITLE>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"></HEAD>
+<meta name="title" content="RakNet - Advanced multiplayer game networking API">
+</HEAD>
+<BODY BGCOLOR="#ffffff" LINK="#003399" vlink="#003399" alink="#003399" LEFTMARGIN="0" TOPMARGIN="0" MARGINWIDTH="0" MARGINHEIGHT="0"">
+<img src="rakkarsoftllc.gif" alt="Rakkarsoft LLC" width="215" height="60"><BR><BR>
+
+<table width="100%" border="0"><tr><td bgcolor="#6699CC"><font color="#FFFFFF" size="3" face="Arial, Helvetica, sans-serif"><strong> 
+<img src="spacer.gif" width="8" height="1">Plugin Interface</strong></font></td></tr></table>
+<TABLE BORDER="0" CELLPADDING="10" CELLSPACING="0" WIDTH="100%"><TR>
+  <TD>
+    <p><FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" CLASS="G10" COLOR="#3366CC"><strong>Plugin Interface Overview
+      </strong></FONT><BR>
+      <BR>
+      
+      <FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" CLASS="G10" COLOR="#666666">The plugin interface <I>PluginInterface.h</I> is a class interface that works with RakNet to provide automatic functionality.  To use it, derive from the base class and implement the virtual functions you want to handle.  Then register your class by calling AttachPlugin on your RakPeer.<br>
+      These are the virtual functions you'll probably need to handle in most cases:</FONT></p>
+    <p><FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" CLASS="G10" COLOR="#666666"><FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" CLASS="G10" COLOR="#666666">Called when you attach the plugin to the RakPeer<BR>
+        </FONT>
+        <FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="1" CLASS="G10" COLOR="#111122">
+        virtual void OnAttach(RakPeerInterface *peer);<BR>
+        </FONT></FONT> <BR>
+        <FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" CLASS="G10" COLOR="#666666">Called when the plugin is detached<BR>
+        </FONT>
+        <FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="1" CLASS="G10" COLOR="#111122">
+        virtual void OnDetach(RakPeerInterface *peer);<BR>
+        </FONT></FONT> <BR>				
+        <FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" CLASS="G10" COLOR="#666666">Update is called everytime Receive is called through RakNet<BR>
+                </FONT>		
+        <FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="1" CLASS="G10" COLOR="#111122">
+        virtual void Update(RakPeerInterface *peer);<BR>
+                </FONT>
+        <BR>
+      
+        <FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" CLASS="G10" COLOR="#666666">OnReceive is called everytime a packet goes through RakNet.  You can handle it or not as you want.  Return RR_STOP_PROCESSING_AND_DEALLOCATE to absorb the packet, or RR_CONTINUE_PROCESSING to allow the packet to propagate to another handler, or to the game.  Generally you will return RR_CONTINUE_PROCESSING unless the packet type is specific to your handler.<BR>
+                </FONT>
+        <FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="1" CLASS="G10" COLOR="#111122">
+        virtual PluginReceiveResult OnReceive(RakPeerInterface *peer, Packet *packet);<BR>
+                </FONT>
+        <BR>
+      
+        <FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" CLASS="G10" COLOR="#666666">Called when Shutdown is called for the RakPeer.<BR>
+                </FONT>
+        <FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="1" CLASS="G10" COLOR="#111122">virtual void OnShutdown(RakPeerInterface *peer);<BR>
+                </FONT>
+        <BR>
+      
+        <FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" CLASS="G10" COLOR="#666666">Called when a connection is dropped because the user called RakPeer::CloseConnection() for a particular system.<BR>
+        </FONT>
+        <FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="1" CLASS="G10" COLOR="#111122">
+        virtual void OnCloseConnection(RakPeerInterface *peer, SystemAddress systemAddress);<BR>
+                </FONT>
+        <BR>
+      
+        </FONT></p></TD></TR></TABLE>
+
+<table width="100%" border="0"><tr><td bgcolor="#6699CC"><font color="#FFFFFF" size="3" face="Arial, Helvetica, sans-serif"><strong> 
+<img src="spacer.gif" width="8" height="1">Plugin Interface Implementations</strong></font></td></tr></table>
+<TABLE BORDER="0" CELLPADDING="10" CELLSPACING="0" WIDTH="100%"><TR><TD>
+<FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" CLASS="G10" COLOR="#3366CC"><strong>Fully Connected Mesh</strong></FONT><BR><BR>
+<FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" CLASS="G10" COLOR="#666666">
+The <A HREF="fullyconnectedmesh.html">fully connected mesh</A> intercepts connection notifications and automatically connects to other known peers.
+</FONT>
+<BR><BR>
+<FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" CLASS="G10" COLOR="#3366CC"><strong>Replica Manager</strong></FONT><BR>
+<BR>
+<FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" CLASS="G10" COLOR="#666666">
+The <A HREF="replicamanager.html">replica manager</A> provides management for your game objects and players to make serialization, scoping, and object creation and destruction easier.
+</FONT>
+
+</FONT>
+</TD>
+</TR></TABLE>
+<table width="100%" border="0"><tr><td bgcolor="#6699CC"><font color="#FFFFFF" size="3" face="Arial, Helvetica, sans-serif"><strong> 
+<img src="spacer.gif" width="8" height="1">See Also</strong></font></td></tr></table>
+<TABLE BORDER="0" CELLPADDING="10" CELLSPACING="0" WIDTH="100%"><TR><TD>
+<FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="1" CLASS="G10" COLOR="#666666">
+<A HREF="index.html">Index</A><BR>
+<A HREF="fullyconnectedmesh.html">Fully Connected Mesh</A><BR>
+<A HREF="replicamanager.html">Replica Manager</A><BR>
+</FONT>
+</TD></TR></TABLE>
+</BODY>
+</HTML>
