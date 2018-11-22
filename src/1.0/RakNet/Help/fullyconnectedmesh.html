@@ -1,0 +1,44 @@
+<HTML>
+<HEAD>
+
+<TITLE>Fully Connected Mesh</TITLE>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"></HEAD>
+<meta name="title" content="RakNet - Advanced multiplayer game networking API">
+</HEAD>
+<BODY BGCOLOR="#ffffff" LINK="#003399" vlink="#003399" alink="#003399" LEFTMARGIN="0" TOPMARGIN="0" MARGINWIDTH="0" MARGINHEIGHT="0"">
+<img src="rakkarsoftllc.gif" alt="Rakkarsoft LLC" width="215" height="60"><BR><BR>
+
+<table width="100%" border="0"><tr>
+  <td bgcolor="#6699CC"><font color="#FFFFFF" size="3" face="Arial, Helvetica, sans-serif"><strong> 
+<img src="spacer.gif" width="8" height="1">Fully Connected Mesh Plugin Interface Implementation</strong></font></td>
+</tr></table>
+<TABLE BORDER="0" CELLPADDING="10" CELLSPACING="0" WIDTH="100%"><TR><TD>
+<FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" CLASS="G10" COLOR="#3366CC"><strong>Fully Connected Mesh Implementation Overview
+</strong></FONT><BR><BR>
+
+<FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" CLASS="G10" COLOR="#666666">
+The fully connected mesh implementation reads connection messages from RakNet and tries to connect to all systems on the network.  On a new connection, it will tell the remote system of all systems it knows about.  When that packet arrives, that system will then try to connect to all those systems in turn.  You can optionally specify a password which you can use to allow certain systems to join the mesh and other systems to not do so.<br>
+NOTE : The implementation requires that a ConnectionGraph plugin is also attached to the RakPeer.<BR>
+<BR>
+</FONT><FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" CLASS="G10" COLOR="#666666"><BR>
+</FONT>
+
+<FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" CLASS="G10" COLOR="#666666">
+Set the password to use to connect to the other systems.
+</FONT><BR>
+<FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="1" CLASS="G10" COLOR="#111122">
+void Startup(const char *password);
+</FONT><BR><BR></TD>
+</TR></TABLE>
+
+<table width="100%" border="0"><tr><td bgcolor="#6699CC"><font color="#FFFFFF" size="3" face="Arial, Helvetica, sans-serif"><strong> 
+<img src="spacer.gif" width="8" height="1">See Also</strong></font></td></tr></table>
+<TABLE BORDER="0" CELLPADDING="10" CELLSPACING="0" WIDTH="100%"><TR><TD>
+<FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="1" CLASS="G10" COLOR="#666666">
+<A HREF="index.html">Index</A><BR>
+<A HREF="plugininterface.html">PluginInterface</A><BR>
+<A HREF="replicamanager.html">Replica Manager</A><BR>
+</FONT>
+</TD></TR></TABLE>
+</BODY>
+</HTML>

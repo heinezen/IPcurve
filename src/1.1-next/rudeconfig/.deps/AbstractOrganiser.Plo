@@ -1,0 +1,4 @@
+AbstractOrganiser.lo AbstractOrganiser.o: src/AbstractOrganiser.cpp \
+  src/AbstractOrganiser.h
+
+src/AbstractOrganiser.h:

@@ -1,0 +1,102 @@
+<HTML>
+<HEAD>
+
+<TITLE>Autopatcher</TITLE>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"></HEAD>
+<meta name="title" content="RakNet - Advanced multiplayer game networking API">
+</HEAD>
+<BODY BGCOLOR="#ffffff" LINK="#003399" vlink="#003399" alink="#003399" LEFTMARGIN="0" TOPMARGIN="0" MARGINWIDTH="0" MARGINHEIGHT="0"">
+<img src="rakkarsoftllc.gif" alt="Rakkarsoft LLC" width="215" height="60"><BR><BR>
+
+<table width="100%" border="0"><tr><td bgcolor="#6699CC"><font color="#FFFFFF" size="3" face="Arial, Helvetica, sans-serif"><strong> 
+<img src="spacer.gif" width="8" height="1">Autopatcher</strong></font></td></tr></table>
+<TABLE BORDER="0" CELLPADDING="10" CELLSPACING="0" WIDTH="100%"><TR><TD>
+<P><FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" CLASS="G10" COLOR="#3366CC"><strong>The autopatcher system
+</strong></FONT><BR><BR>
+<FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" CLASS="G10" COLOR="#666666">
+The autopatcher is a class that manages the copying of missing or changed files between two or more systems.  It handles transferring files, compressing transferred files, security, and file operations.  It does not handle basic connectivity or provide a user interface - that is up to you.  Autopatchers are  used in all online only games and many top commercial games.<BR><BR>
+In the client, you need an instance of AutopatcherClient. The server needs an instance of AutopatcherServer. The code for those classes is not part of RakNet core. They are located at .\DependentExtensions\ , and you need to add them to your project.<br>
+</FONT><FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" CLASS="G10" COLOR="#666666"><br>
+<strong>On the client side</strong> <br>
+<br>
+On the client side, most work is done with just a couple of methods of AutopatcherClient.<br>
+<br>
+<FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="1" CLASS="G10" COLOR="#111122">
+void SetFileListTransferPlugin(FileListTransfer *flt);</FONT><BR>
+	<br> 
+	This plugin has a dependency on the FileListTransfer plugin, which it uses to actually send the files.
+	So you need an instance of that plugin registered with RakPeerInterface, and a pointer to that interface should be passed in this function.<br>
+	<br>
+<br>
+
+
+<FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="1" CLASS="G10" COLOR="#111122">
+	bool PatchApplication(const char *_applicationName, const char *_applicationDirectory, const char *lastUpdateDate, SystemAddress host, FileListTransferCBInterface *onFileCallback, const char *restartOutputFilename, const char *pathToRestartExe);
+	</FONT><BR>
+<br>
+
+Patches a certain directory associated with a named application to match the same named application on the patch server<br>
+<em>_applicationName</em> - The name of the application<br>
+<em>_applicationDirectory</em> - The directory to write the output to.<br>
+<em>lastUpdateDate</em> - A string representing the last time you updated from the patch server, so you only check newer files.  Should be 0 the first time, or if you want to do a full scan.  Returned in GetServerDate() after you call PatchApplication successfully.<br>
+<em>host</em> - The address of the remote system to send the message to.<br>
+<em>onFileCallback</em> - Callback to call per-file (optional).  When fileIndex+1==setCount in the callback then the download is done.<br>
+<em>_restartOutputFilename</em> - If it is necessary to restart this application, where to write the restart data to.  You can include a path in this filename.<br>
+<em>pathToRestartExe</em> - What exe to launch from the AutopatcherClientRestarter .  argv[0] will work to relaunch this application.<br>
+
+
+
+
+      <br>
+      There are other functions and classes involved in the client side, but you should study the sample at <em>\Samples\AutopatcherClient</em>.</FONT>
+<P><FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" CLASS="G10" COLOR="#666666"><strong>On the server side</strong> <br>
+    <br>
+      On the client side, you use an instance of AutopatcherServer.<br>
+        <br> 
+        <br>
+		
+<FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="1" CLASS="G10" COLOR="#111122">
+void SetFileListTransferPlugin(FileListTransfer *flt);</FONT><BR>
+Like AutopatcherClient, this plugin also has a dependency on the FileListTransfer plugin, which it uses to actually send the files.
+So you need an instance of that plugin registered with RakPeerInterface, and a pointer to that interface should be passed here.
+<br><br>
+<FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="1" CLASS="G10" COLOR="#111122">
+void SetAutopatcherRepositoryInterface(AutopatcherRepositoryInterface *ari);</FONT><BR>
+With the function, you tell AutopatchServer how to take care of the network transfer of the patchs.
+This class only does the network transfers for the autopatcher.  All the data is stored in a repository.
+Pass the interface to your repository with this function.  RakNet comes with AutopatcherPostgreRepository if you wish to use that.
+
+
+
+		
+		
+    <BR>
+    <br>
+    Check the sample at <em>\Samples\AutoPatcherServer</em>. It uses an implementation of AutopatcherRepositoryInterface for PostgreSQL (AutopatcherPostgreRepository), to store all the files of an application in a PostgreSQL database.<br>
+    <br>
+    <br>
+    <strong>Other note</strong></FONT><strong>s</strong><br>
+    <br>
+    <FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" CLASS="G10" COLOR="#666666">It's possible to use directory structures.
+    For example, suppose you have the following directory structure for your application: <br> 
+    <br>
+	<FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="1" CLASS="G10" COLOR="#111122">
+    Readme.txt<BR>
+    Music/Song1.wav<BR>
+    Music/Song2.wav<BR>
+    </FONT><br>
+	
+    The Autopatcher will keep directories structures intact.  So if the sending system has that directory structure, t</FONT><FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" CLASS="G10" COLOR="#666666">he downloading system will mirror this directory structure.
+      <BR>
+      <BR>
+    </FONT>
+</TD></TR></TABLE>
+<table width="100%" border="0"><tr><td bgcolor="#6699CC"><font color="#FFFFFF" size="3" face="Arial, Helvetica, sans-serif"><strong> 
+<img src="spacer.gif" width="8" height="1">See Also</strong></font></td></tr></table>
+<TABLE BORDER="0" CELLPADDING="10" CELLSPACING="0" WIDTH="100%"><TR><TD>
+<FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="1" CLASS="G10" COLOR="#666666">
+<A HREF="index.html">Index</A><BR>
+</FONT>
+</TD></TR></TABLE>
+</BODY>
+</HTML>

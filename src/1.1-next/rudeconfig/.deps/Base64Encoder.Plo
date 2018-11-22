@@ -1,0 +1,18 @@
+Base64Encoder.lo Base64Encoder.o: src/Base64Encoder.cpp \
+  src/Base64Encoder.h /usr/include/string.h /usr/include/_types.h \
+  /usr/include/sys/_types.h /usr/include/sys/cdefs.h \
+  /usr/include/machine/_types.h /usr/include/ppc/_types.h
+
+src/Base64Encoder.h:
+
+/usr/include/string.h:
+
+/usr/include/_types.h:
+
+/usr/include/sys/_types.h:
+
+/usr/include/sys/cdefs.h:
+
+/usr/include/machine/_types.h:
+
+/usr/include/ppc/_types.h:

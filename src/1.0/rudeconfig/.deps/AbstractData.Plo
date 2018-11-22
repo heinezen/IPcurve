@@ -1,0 +1,3 @@
+AbstractData.lo AbstractData.o: src/AbstractData.cpp src/AbstractData.h
+
+src/AbstractData.h:

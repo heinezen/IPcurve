@@ -1,0 +1,71 @@
+<HTML>
+<HEAD>
+
+<TITLE>Message Handler Interface</TITLE>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"></HEAD>
+<meta name="title" content="RakNet - Advanced multiplayer game networking API">
+</HEAD>
+<BODY BGCOLOR="#ffffff" LINK="#003399" vlink="#003399" alink="#003399" LEFTMARGIN="0" TOPMARGIN="0" MARGINWIDTH="0" MARGINHEIGHT="0"">
+<img src="rakkarsoftllc.gif" alt="Rakkarsoft LLC" width="215" height="60"><BR><BR>
+
+<table width="100%" border="0"><tr><td bgcolor="#6699CC"><font color="#FFFFFF" size="3" face="Arial, Helvetica, sans-serif"><strong> 
+<img src="spacer.gif" width="8" height="1">Message Handler</strong></font></td></tr></table>
+<TABLE BORDER="0" CELLPADDING="10" CELLSPACING="0" WIDTH="100%"><TR><TD>
+<FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" CLASS="G10" COLOR="#3366CC"><strong>Message Handler Overview
+</strong></FONT><BR><BR>
+
+<FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" CLASS="G10" COLOR="#666666">The message handler interface <I>MessageHandlerInterface.h</I> is a class interface that works with RakNet to provide automatic functionality.  To use it, derive from the base class and implement the pure virtual functions.  Then register your class by calling RakPeer.<BR></FONT>
+<BR>
+<FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" CLASS="G10" COLOR="#666666">OnUpdate is called everytime Receive is called through RakNet<BR></FONT>
+<FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="1" CLASS="G10" COLOR="#111122">
+virtual void OnUpdate(RakPeerInterface *peer)=0;<BR>
+</FONT>
+<BR>
+
+<FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" CLASS="G10" COLOR="#666666">OnReceive is called everytime a packet goes through RakNet.  You can handle it or not as you want.  Return true to absorb the packet, false to allow the packet to propagate to another handler, or to the game.  Generally you will return false unless the packet type is specific to your handler.<BR></FONT>
+<FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="1" CLASS="G10" COLOR="#111122">
+virtual bool OnReceive(RakPeerInterface *peer, Packet *packet)=0;<BR>
+</FONT>
+<BR>
+
+<FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" CLASS="G10" COLOR="#666666">Called when Disconnect is called for RakNet.<BR></FONT>
+<FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="1" CLASS="G10" COLOR="#111122">
+virtual void OnDisconnect(RakPeerInterface *peer)=0;<BR>
+</FONT>
+<BR>
+
+<FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" CLASS="G10" COLOR="#666666">PropagateToGame tells RakPeer if a particular packet should be sent to the game or not. Return true unless the packet type is custom for your handler.<BR></FONT>
+<FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="1" CLASS="G10" COLOR="#111122">
+virtual bool PropagateToGame(Packet *packet) const;<BR>
+</FONT>
+<BR>
+
+</FONT>
+</TD></TR></TABLE>
+
+<table width="100%" border="0"><tr><td bgcolor="#6699CC"><font color="#FFFFFF" size="3" face="Arial, Helvetica, sans-serif"><strong> 
+<img src="spacer.gif" width="8" height="1">Message Handler Implementations</strong></font></td></tr></table>
+<TABLE BORDER="0" CELLPADDING="10" CELLSPACING="0" WIDTH="100%"><TR><TD>
+<FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" CLASS="G10" COLOR="#3366CC"><strong>Fully Connected Mesh</strong></FONT><BR><BR>
+<FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" CLASS="G10" COLOR="#666666">
+The <A HREF="fullyconnectedmesh.html">fully connected mesh</A> intercepts connection notifications and automatically connects to other known peers.
+</FONT>
+<BR><BR>
+<FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" CLASS="G10" COLOR="#3366CC"><strong>Memory Synchronizer</strong></FONT><BR><BR>
+<FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" CLASS="G10" COLOR="#666666">
+The <A HREF="memorysynchronizer.html">memory synchronizer</A> updates in OnUpdate, checking against registered memory elements, and transmits changes to those memory elements.
+</FONT>
+
+</FONT>
+</TD></TR></TABLE>
+<table width="100%" border="0"><tr><td bgcolor="#6699CC"><font color="#FFFFFF" size="3" face="Arial, Helvetica, sans-serif"><strong> 
+<img src="spacer.gif" width="8" height="1">See Also</strong></font></td></tr></table>
+<TABLE BORDER="0" CELLPADDING="10" CELLSPACING="0" WIDTH="100%"><TR><TD>
+<FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="1" CLASS="G10" COLOR="#666666">
+<A HREF="index.html">Index</A><BR>
+<A HREF="fullyconnectedmesh.html">Fully Connected Mesh</A><BR>
+<A HREF="memorysynchronizer.html">Memory Synchronizer</A><BR>
+</FONT>
+</TD></TR></TABLE>
+</BODY>
+</HTML>

@@ -1,0 +1,6 @@
+DataLine.lo DataLine.o: src/DataLine.cpp src/DataLine.h \
+  src/AbstractData.h
+
+src/DataLine.h:
+
+src/AbstractData.h:

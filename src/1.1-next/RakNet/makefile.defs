@@ -1,0 +1,26 @@
+# If you are using GCC4 and know you have pentium4 or higher architecture,
+# use the following definition of CC instead
+# CC = g++4 -fPIC -march=pentium4 -msse2 -mfpmath=sse -funroll-loops
+# Or if your default g++ is GCC4
+# CC = g++ -fPIC -march=pentium4 -msse2 -mfpmath=sse -funroll-loops
+
+CC = g++ -fPIC
+
+LIBS = -lpthread -lm
+
+#please read the part abaut speex in LINUX_README if you get problems with speex
+SPEEX_VERSION = 1.1.11.1
+
+INCLUDE = $(BASE_DIR)/speex-$(SPEEX_VERSION)/include/ -I$(BASE_DIR)/Include -I$(BASE_DIR)/Include/RakVoice
+
+#uncoment the second 'DEBUG' to enable debuging.
+#DEBUG =
+DEBUG = -ggdb
+
+SPEEX_DIR = $(BASE_DIR)/speex-$(SPEEX_VERSION)/libspeex/
+
+VERSION = 2.4.5.2
+
+LIBS_DIR = /usr/local/lib
+
+INCLUDE_DIR = /usr/local/include

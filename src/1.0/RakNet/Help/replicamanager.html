@@ -1,0 +1,75 @@
+<HTML>
+<HEAD>
+
+<TITLE>Replica Manager</TITLE>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"></HEAD>
+<meta name="title" content="RakNet - Advanced multiplayer game networking API">
+</HEAD>
+<BODY BGCOLOR="#ffffff" LINK="#003399" vlink="#003399" alink="#003399" LEFTMARGIN="0" TOPMARGIN="0" MARGINWIDTH="0" MARGINHEIGHT="0"">
+<img src="rakkarsoftllc.gif" alt="Rakkarsoft LLC" width="215" height="60"><BR><BR>
+
+<table width="100%" border="0"><tr>
+  <td bgcolor="#6699CC"><font color="#FFFFFF" size="3" face="Arial, Helvetica, sans-serif"><strong> 
+<img src="spacer.gif" width="8" height="1">Replica Manager Plugin Interface Implementation</strong></font></td>
+</tr></table>
+<TABLE BORDER="0" CELLPADDING="10" CELLSPACING="0" WIDTH="100%"><TR>
+  <TD>
+<FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" CLASS="G10" COLOR="#3366CC"><strong>Replica Manager Implementation Overview
+</strong></FONT><BR>
+<BR>
+
+<FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" CLASS="G10" COLOR="#666666">
+ReplicaManager is a system manager for your game objects that performs the following tasks:
+<UL>
+<LI>1. Tracks all locally registered game objects and players and only performs operations to and for those objects and players
+<LI>2. Allows you to automatically turn off unneeded local and remote functions for your game objects, thus providing convenience and security against unauthorized sends.
+<LI>3. Sends notifications of existing game objects to new connections, including a download complete message.
+<LI>4. Sends notifications of new game objects to existing players.
+	<UL>
+	<LI>A. Serialize and scoping calls are not sent to systems that were not notified of that object.
+	<LI>B. Notification calls can be canceled on a per-object basis.  Object notification sends are tracked on a per-system per-object basis.
+	</UL>
+<LI>5. Configurable per-system per-object scoping.
+	<UL>
+	<LI>A. Scoping provides a mechanism to hide and unhide remote objects without destroying the whole object, used when when entities should not be destroyed but are currently not visible to systems.
+	<LI>B. Serialize calls are not sent to hidden objects.
+	<LI>C. Scoping calls can be canceled on a per-object basis.  Scope is tracked on a per-system per-object basis.
+	</UL>
+<LI>6. Construct, SetScope, SignalSerializeNeeded, and the corresponding Replica interfaces are processed in RakPeer::Receive, rather than immediately.
+	<UL>
+	<LI>A. This allows the ReplicaManager to reorganize function calls in order by dependency.  This allows out of order calls, per-object call cancellation (which also cancels dependencies), and per-object call delays (which also delays dependencies)
+	<LI>B. For example, although SetScope and SignalSerializeNeeded have a dependency on SetNetworkID(), you can still call them in the constructor and call SetNetworkID() later, as long as it happens before calling RakPeer::Receive()
+	</UL>
+<LI>7. The system is fast, uses little memory, and is intentionally hands off such that it can work with any game architecture and network topology
+</UL>
+
+<BR>
+<STRONG>What the ReplicaManager system does NOT do for you</STRONG><BR>
+<UL>
+<LI>1. Actually create or destroy your game objects
+<LI>2. Associate object destruction events with remote system disconnects.
+<LI>3. Set networkIDs via SetNetworkID() on newly created objects.
+<LI>4. Object sub-serialization.  Serialize only granular on the level of entire objects.  If you want to serialize part of the object, you need to set your own flags and indicate in the BitStream which parts were sent and which not.
+</UL>
+
+
+
+</FONT>
+
+<FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" CLASS="G10" COLOR="#666666">
+See the samples at <I>Samples\ReplicaManagerCS</I> and <I>Samples\ReplicaManagerP2P</I> </FONT><BR>
+
+</TD>
+</TR></TABLE>
+
+<table width="100%" border="0"><tr><td bgcolor="#6699CC"><font color="#FFFFFF" size="3" face="Arial, Helvetica, sans-serif"><strong> 
+<img src="spacer.gif" width="8" height="1">See Also</strong></font></td></tr></table>
+<TABLE BORDER="0" CELLPADDING="10" CELLSPACING="0" WIDTH="100%"><TR><TD>
+<FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="1" CLASS="G10" COLOR="#666666">
+<A HREF="index.html">Index</A><BR>
+<A HREF="plugininterface.html">PluginInterface</A><BR>
+<BR>
+</FONT>
+</TD></TR></TABLE>
+</BODY>
+</HTML>

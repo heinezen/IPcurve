@@ -1,0 +1,111 @@
+<HTML>
+<HEAD>
+
+<TITLE>Network ID Generator</TITLE>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"></HEAD>
+<meta name="title" content="RakNet - Advanced multiplayer game networking API">
+</HEAD>
+<BODY BGCOLOR="#ffffff" LINK="#003399" vlink="#003399" alink="#003399" LEFTMARGIN="0" TOPMARGIN="0" MARGINWIDTH="0" MARGINHEIGHT="0"">
+<img src="rakkarsoftllc.gif" alt="Rakkarsoft LLC" width="215" height="60"><BR><BR>
+
+<table width="100%" border="0"><tr><td bgcolor="#6699CC"><font color="#FFFFFF" size="3" face="Arial, Helvetica, sans-serif"><strong> 
+<img src="spacer.gif" width="8" height="1">Network ID Generator</strong></font></td></tr></table>
+<TABLE BORDER="0" CELLPADDING="10" CELLSPACING="0" WIDTH="100%"><TR><TD>
+<FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" CLASS="G10" COLOR="#3366CC"><strong>The network ID generator class allows you to refer to objects in a common fashion over different computers
+</strong></FONT><BR><BR>
+<FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" CLASS="G10" COLOR="#666666">
+The network ID generator class is an optional class you can derive from that will automatically assign identification numbers to objects that inherit from it.  This is very useful for multiplayer games, because otherwise you have no way to refer to dynamic objects on remote systems.<BR>
+<BR>
+<B>IMPORTANT:</B><BR>
+There is a derivation of NetworkIDGenerator called NetworkObject.  It assumes that there is an externally instantiated server and client, which there is if you use the Multiplayer class.<BR>
+<BR>
+If you want to use your own instantiations, implement the pure virtual functions in a derived class telling NetworkIDGenerator the status of your client and server (or peer).<BR>
+<BR>
+In the simplest case, here's how it works:<BR>
+Use GetNetworkID() to get the ID of an object.  If no ID was assigned, it will return UNASSIGNED_OBJECT_ID<BR>
+Use SetNetworkID() to set the ID of an object.<BR>
+<BR>
+It's easy to get in trouble if you do this wrong, which is why the NetworkIDGenerator class has commented printf and puts statements in there.  For debug, you should uncomment those and run your own message handler so you can get the warnings or errors if you do something wrong.<BR>
+<OL>
+<LI>Don't call SetNetworkID on an object that already had it set, unless you want to reassign IDs.
+<LI>If you delete an object on one system this will invalidate the IDs so you need to delete the object on all systems.
+<LI>Due to lag it's possible that an object exists on one system but not another.  When you use GET_OBJECT_FROM_ID to convert an objectID into a pointer, you must check for a 0 return value.
+</OL>
+<B>As a server:</B><BR>
+IDs are automatically assigned, so GetNetworkID() will always work and you should not call SetNetworkID().  When the server creates a new Network Object, the clients must know about it.  So you would generally do this:<BR>
+<BR>
+</FONT><FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="1" CLASS="G10" COLOR="#111122">
+MyObject *myObject = new MyObject;  // MyObject inherits from Network Object<BR>
+ObjectID objectId = myObject->GetID();<BR>
+</FONT><FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" CLASS="G10" COLOR="#666666">
+<BR>
+Create a packet with an ObjectID field, then send it to the clients.<BR>
+<BR>
+When the client gets the packet:<BR><BR>
+</FONT><FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="1" CLASS="G10" COLOR="#111122">
+MyObject *myObject = new MyObject;  // MyObject inherits from Network Object<BR>
+myObject->SetID(objectId); // objectID was contained in the packet<BR>
+</FONT><FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" CLASS="G10" COLOR="#666666">
+<BR>
+<B>As a client:</B><BR>
+IDs are never assigned, you must get them from the server.  If you create or want to create an object, you must program things in such a way that the server will return a packet to you telling you what the ID is of the object you just created.  If the server creates an object (or another client did and the server tells you about it, which is the same thing) then you can just assign IDs as usual.<BR>
+<BR>
+The easiest way to handle creation of objects on the client is to ask the server for the object and only create the object when the server replies.  Send something like ID_REQUEST_CREATE_OBJECT or whatever.  You can then program the server to create the object and reply to the sender of this packet with the ID encoded into the packet (just like we did above).<BR>
+<BR>
+On the server:<BR>
+</FONT><FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="1" CLASS="G10" COLOR="#111122"><BR>
+// Code to handle ID_REQUEST_CREATE_OBJECT<BR>
+MyObject *myObject = new MyObject;  // MyObject inherits from Network Object<BR>
+ObjectID objectId = myObject->GetID();<BR>
+</FONT><FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" CLASS="G10" COLOR="#666666">
+<BR>
+Create a packet with an ObjectID field, then send it to the clients.  The packet should be something along the lines of ID_CREATE_OBJECT for whatever type of object was just requested.<BR>
+<BR>
+When the client gets the packet:<BR><BR>
+</FONT><FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="1" CLASS="G10" COLOR="#111122">
+MyObject *myObject = new MyObject;  // MyObject inherits from Network Object<BR>
+myObject->SetID(objectId); // objectID was contained in the packet<BR>
+</FONT><FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" CLASS="G10" COLOR="#666666">
+<BR>
+As a side note, it's a good idea to put some kind of cheat detection here.  For example if the client asks to create 50 tanks, and it's only 5 seconds into the game, you know something is wrong.  Generally RakNet will block any kind of packet modification or duplication.  But ANYTHING can be hacked given enough time, so it can't hurt as long as it's easy to code.<BR>
+<BR>
+</FONT><FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" CLASS="G10" COLOR="#3366CC"><strong>Programming Tip</strong></FONT><BR><BR>
+<FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" CLASS="G10" COLOR="#666666">
+Not everything in your game has to or should derive from NetworkIDGenerator.  Only the things you need to refer to in some common fashion over the various systems need this.  If there is some obvious way to refer to the objects, such as there only being one type of that object per system, you wouldn't need it.<BR>
+<BR>
+<I>Examples of when to derive from NetworkIDGenerator:</I><BR>
+Your game has many enemies arranged in no particular order.<BR>
+Your game has many enemies, who are deleted when they die.<BR>
+Your game has triggers, such as when a player walks within 10 feet of a barrel it explodes.  You could make the trigger itself derive from NetworkIDGenerator.<BR>
+<BR>
+<I>Examples of when not to derive from NetworkIDGenerator:</I><BR>
+All the enemies in your game are created in a specific order in an array.  You could just send the array index in that case.<BR>
+There's only one castle in your game.  Whenever a packet refers to a castle, you implicitly know which one it is.<BR>
+The object is never referred to by the network.  For example, a bullet fired from a gun.  You interact with the player doing the shooting and the player getting hit, but don't worry about the gun itself.<BR>
+<BR>
+</FONT><FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" CLASS="G10" COLOR="#3366CC"><strong>Other functions</strong></FONT><BR><BR>
+<FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" CLASS="G10" COLOR="#666666">
+<B>NetworkIDGenerator* GET_OBJECT_FROM_ID(ObjectID x);</B><BR>
+This function will lookup the item you are looking for in its internal representation (an AVL balanced binary tree) and return a pointer to a NetworkIDGenerator.  You can then cast the pointer to the type you know it should be, depending on the context of what you are looking up.<BR>
+<BR>
+Example:<BR>
+</FONT><FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="1" CLASS="G10" COLOR="#111122">
+MyObject *myObject = (MyObject *) GET_OBJECT_FROM_ID(packet->objectId);<BR>
+if (myObject==0)<BR>
+return; // Couldn't find the object<BR>
+</FONT><FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" CLASS="G10" COLOR="#666666">
+<BR>
+<B>static unsigned short GetStaticItemID(void);<BR>
+static void SetStaticItemID(unsigned short i);</B><BR>
+These are advanced functions you probably won't need and shouldn't use unless you fully understand the NetworkIDGenerator.  You can use them for force ID numbers to start at some particular value, and to get the current high value that the server will use for ID numbers.  This is only useful for loading the server into an existing game state that already uses IDs.  For example, if I were to save a game on the server that used IDs from 0 to 1000 and wanted to continue that game I could load the game and call SetStaticItemID(1001);  That way newly assigned IDs won't conflict with existing IDs.
+</FONT>
+</TD></TR></TABLE>
+<table width="100%" border="0"><tr><td bgcolor="#6699CC"><font color="#FFFFFF" size="3" face="Arial, Helvetica, sans-serif"><strong> 
+<img src="spacer.gif" width="8" height="1">See Also</strong></font></td></tr></table>
+<TABLE BORDER="0" CELLPADDING="10" CELLSPACING="0" WIDTH="100%"><TR><TD>
+<FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="1" CLASS="G10" COLOR="#666666">
+<A HREF="index.html">Index</A><BR>
+</FONT>
+</TD></TR></TABLE>
+</BODY>
+</HTML>

@@ -1,0 +1,220 @@
+<HTML>
+<HEAD>
+
+<TITLE>System Overview</TITLE>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"></HEAD>
+<meta name="title" content="RakNet - Advanced multiplayer game networking API">
+</HEAD>
+<BODY BGCOLOR="#ffffff" LINK="#003399" vlink="#003399" alink="#003399" LEFTMARGIN="0" TOPMARGIN="0" MARGINWIDTH="0" MARGINHEIGHT="0"">
+<img src="rakkarsoftllc.gif" alt="Rakkarsoft LLC" width="215" height="60"><BR><BR>
+
+<table width="100%" border="0"><tr><td bgcolor="#6699CC"><font color="#FFFFFF" size="3" face="Arial, Helvetica, sans-serif"><strong> 
+<img src="spacer.gif" width="8" height="1">System Overview</strong></font></td></tr></table>
+<TABLE BORDER="0" CELLPADDING="10" CELLSPACING="0" WIDTH="100%"><TR><TD>
+<strong>
+<font face="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" color="#3366CC">
+System Architecture</font></strong><p>
+<font face="Verdana" size="2" color="#666666"><b>RakPeer.h</b> provides the base 
+functionality for all of RakNet.&nbsp; On start, RakPeer starts a thread that 
+will process all incoming datagrams and send most outgoing datagrams.&nbsp; A 
+shared memory array of RemoteSystem structures is shared between the user thread 
+and the network thread.&nbsp; Messages are sent between these two threads using 
+a fast single producer single consumer object.&nbsp; Each player has one entry 
+in the array of RemoteSystem structures.&nbsp; Each element in the array has an 
+instance of the ReliabilityLayer class, which handles reliable sends, ordering, 
+and integrates with the message security classes.&nbsp; As user messages arrive, 
+they are stored a single producer single consumer queue.&nbsp; When a user wants 
+a message, by calling Receive(), this will return a pointer to one element of 
+the queue.&nbsp; When a user is done with a message, by calling DeallocatePacket(), 
+this will increment the write pointer of the queue.&nbsp; This is why you have 
+to return messages in the same order as you get them.</font></p>
+<p><font face="Verdana" size="2" color="#666666">Calling Receive() also does any 
+user-thread based processing.&nbsp; One case of this is <b>RakNet's plugin 
+system.</b>&nbsp; The plugin system is just an interface (PluginInterface.h) 
+that has hooks inside RakPeer to perform certain functionality on certain 
+events.&nbsp; The biggest two are Update() and the processing of packets in 
+OnReceive(), both of which happen when the user calls RakPeer::Receive().&nbsp; 
+This has two advantages.&nbsp; First, you don't have to keep track of which 
+plugin modules you are using.&nbsp; Second, if a plugin module has its own 
+message types, those message types can be processed in the plugin and blocked 
+from being returned from Receive().&nbsp; Hence, your application can add 
+modular functionality with no code changes beyond adding the plugin itself.</font></p>
+<p><font face="Verdana" size="2" color="#666666">RakNet's messaging system works 
+by treating the first byte of any message as an identifier indicating the format 
+and meaning of the rest of the data in the message.&nbsp; The message id bytes 
+used by RakNet are stored in the file MessageIdentifiers.h.&nbsp; Users that 
+want to extend this system can start their own enumerations starting at the 
+highest enumeration in MessageIdentifiers.h + 1.&nbsp; Users would then check 
+the first byte of messages that are returned to them and call a function to 
+handle the rest of the data in the message.&nbsp; To make this easier, RakNet 
+supports <b>remote function calls</b>.&nbsp; Essentially, remote function calls 
+perform this mapping for you by registering a string with a function pointer.&nbsp; 
+You then call RakPeer::RPC with the name of the function and if the other side 
+has that function registered, it will call the function pointer along with a 
+structure containing data such as encoded parameters and who sent the message.&nbsp; 
+This system has two further extensions.&nbsp; First, it supports return values 
+by blocking in the Receive() call until a message is returned or until a timeout 
+elapses.&nbsp; Second, it supports calling into object member functions, not 
+just static C functions.</font></p>
+<p><font face="Verdana" size="2" color="#666666">The <b>NetworkIDObject</b> 
+class provides the ability for systems to refer to common objects and is used by 
+object member remote function calls.&nbsp; It is a fairly simple system that has 
+the server assign a number to objects as they are created.&nbsp; When a client 
+creates an object, it is responsible for sending this event to the server, 
+getting the number to use when the object is created on the server in turn, and 
+then assigning this number to the object.&nbsp; This way systems can refer to 
+objects on multiple systems which would otherwise be impossible since pointer 
+addresses would probably not be the same.&nbsp; The easiest way to use this 
+system is to derive from it.&nbsp; However, you can also include it as a member 
+variable of your base class and call SetParent(parentClassPointer).&nbsp; The 
+disadvantage of this architecture is that it relies on a single system being 
+present to assign network IDs.&nbsp; This can be addressed by having <b>
+NetworkID</b>s be a <b>SystemAddress / NetworkID </b>pair instead of a simple number.&nbsp; 
+However, that takes more bandwidth which would be wasted in server/client 
+topology, which happens to be the most common case.&nbsp; It is currently 
+implemented using a single number.</font></p>
+<p><font face="Verdana" size="2" color="#666666">The <b>
+<a href="systemaddresses.html">SystemAddress</a></b> structure is what RakNet uses to 
+represent remote systems.&nbsp; It is the binary encoding of the IP address 
+along with the port of that system.</font></p>
+<p><font face="Verdana" size="2" color="#666666">The <b>
+<a href="bitstreams.html">BitStream</a></b> class, located in BitStream.h, is 
+natively supported by RakNet.&nbsp; This is both a user class and an internal 
+class.&nbsp; It is primarily used to write single bits to a stream and for 
+automatic endian swapping, which can be enabled by commenting out&nbsp; __BITSTREAM_NATIVE_END 
+in RakNetDefines.h.&nbsp; It is disabled by default for speed, since most users do 
+not need endian swapping.</font></p>
+<p>
+<FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" CLASS="G10" COLOR="#666666">
+<BR>
+</font><strong>
+<FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" CLASS="G10" COLOR="#3366CC">
+User</font></strong><FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" CLASS="G10" COLOR="#666666"><strong><FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" CLASS="G10" COLOR="#3366CC"> 
+classes / files</FONT></strong></font></p>
+<p>
+<font face="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" color="#666666">
+These are the classes and files designed to be used by the user.&nbsp; All other 
+classes and files are internal, or are in support of these classes.&nbsp; All 
+user classes are extensively documented in the header file so you should look 
+there for function level documentation.&nbsp; In every case you can find the 
+class inside the header file of the same name.</font></p>
+<p>
+<font face="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" color="#666666">
+<i>Bitstream -</i> Used to write bits to a stream.&nbsp; If you are sending 
+between systems with different endian representations you should use this for 
+all your data to do automatic endian swapping.&nbsp; Also supports compression 
+for certain types such as quaternions and vectors.</font></p>
+<p>
+<font face="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" color="#666666">
+<i>CommandParserInterface</i> - An interface you can derive from to add more 
+command string parsing capabilities to <i>ConsoleServer</i>.</font></p>
+<p>
+<font face="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" color="#666666">
+<i>ConsoleServer</i> - Allows you to remotely log into your game and send 
+command line directives.&nbsp; You choose a transport provider for the data and 
+add one or more command parsers derived from <i>CommandParserInterface</i>.&nbsp; 
+Built-in transport providers include <i>RakNetTransport</i> (secure) and <i>
+TelnetTransport</i> (insecure but all computers have telnet built in).</font></p>
+<p>
+<font face="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" color="#666666">
+<i>FullyConnectedMesh</i> - A implementation of <i>PluginInterface</i> that will 
+watch for connection packets and automatically connect your system to all other 
+systems in the mesh.</font></p>
+<p>
+<font face="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" color="#666666">
+<i>GetTime</i> - Returns the system time in milliseconds.&nbsp; This is the 
+number system RakPeer uses for timestamping packets.</font></p>
+<p>
+<font face="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" color="#666666">
+<i>LogCommandParser</i> - An implementation of <i>CommandParserInterface </i>&nbsp;that 
+allows remote systems to request channel based log output to the console window.&nbsp; 
+Used for remote log output. See the CommandConsoleServer example to see this in 
+practice.</font></p>
+<p><font face="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" color="#666666"><i>NetworkIDObject -</i> Assigns a number to an object  if the local system is the server.&nbsp; Otherwise lets you set this 
+number manually.&nbsp; Used to refer to the same instance of the same object 
+across multiple systems.</font></p>
+<p>
+<font face="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" color="#666666">
+<i>PacketConsoleLogger</i> - A derivation of <i>PacketLogger</i> that writes to 
+the <i>LogCommandParser</i> instead of the screen.</font></p>
+<p>
+<font face="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" color="#666666">
+<i>MessageIdentifiers.h</i> - All the message enumerations returned by RakNet in 
+the first byte of messages.&nbsp; This includes disconnect and connect messages.</font></p>
+<p>
+<font face="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" color="#666666">
+<i>PacketFileLogger</i> - A derivation of <i>PacketLogger</i> that writes to a 
+file instead of the screen.</font></p>
+<p>
+<font face="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" color="#666666">
+<i>PacketLogger</i> - An implementation of <i>PluginInterface</i> that tracks at 
+a low level all the packets that go in and out of RakNet and writes them to the 
+screen.</font></p>
+<p>
+<font face="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" color="#666666">
+<i>PluginInterface</i> - RakNet's plugin system.&nbsp; You can derive from this 
+to write your own plugins.</font></p>
+<p><font face="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" color="#666666"><i>RakNetCommandParser</i> - The interface you can derive from to add your own 
+custom command parsing to <i>ConsoleServer</i>.&nbsp; It's very easy to use - 
+look at <i>LogCommandParser</i> for an example of a parser that comes with 
+RakNet.</font></p>
+<p>
+<font face="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" color="#666666">
+<i>RakNetStatistics</i> - RakPeer::GetStatistics returns this structure.&nbsp; 
+Returns a large number of statistics related to network activity.</font></p>
+<p>
+<font face="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" color="#666666">
+<i>RakNetTransport</i> - One of the transport methods used by <i>ConsoleServer.</i>&nbsp; 
+Secure.&nbsp; If you use this transport provider you will need to connect to <i>
+ConsoleServer</i> using the code in the sample <i>CommandConsoleClient</i>.</font></p>
+<p>
+<font face="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" color="#666666">
+<i>RakNetworkFactory</i> - A factory class to new and delete user classes.&nbsp; 
+Only necessary if you use the DLL since DLL classes have to be new'ed and 
+deleted inside the DLL that contains them.</font></p>
+<p>
+<font face="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" color="#666666">
+<i>RakPeerInterface</i> - Provides core library functions such as sending and 
+receiving messages, pinging, statistics, player management, security, and more.</font></p>
+<p><font face="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" color="#666666"><i>Rand.h</i> - C function prototypes to return random numbers.&nbsp; Use it if 
+you want.</font></p>
+<p>
+<font face="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" color="#666666">
+<i>ReplicaManager</i> - A management system for your game objects and players to 
+make serialization, scoping, and object creation and destruction easier.</font></p>
+<p>
+<font face="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" color="#666666">
+<i>SimpleMutex</i> - A simple Lock / Unlock mutex class based on critical 
+section objects.&nbsp; You can use it if you are doing multithreaded programming 
+but it is optional.</font></p>
+<p>
+<font face="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" color="#666666">
+<i>StringCompressor</i> - Encodes / decodes strings using Huffman compression.&nbsp; 
+If you are sending English language strings you can reduce bandwidth this way.</font></p>
+<p>
+<font face="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" color="#666666">
+<i>TelnetTransport</i> - One of the transport methods used by <i>ConsoleServer</i>.&nbsp; 
+Insecure, but every computer comes with Telnet.</font></p>
+<p>
+<font face="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" color="#666666">
+<i>TransportInterface - </i>Derive from this to write your own string based 
+transport providers for <i>ConsoleServer</i>.</font></p>
+<p>
+<FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" CLASS="G10" COLOR="#666666">
+<BR>
+<FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" CLASS="G10" COLOR="#666666">
+Next page: <A HREF="detailedimplementation.html">Detailed Implementation</A></FONT>
+</TD></TR></TABLE>
+<table width="100%" border="0"><tr><td bgcolor="#6699CC"><font color="#FFFFFF" size="3" face="Arial, Helvetica, sans-serif"><strong> 
+<img src="spacer.gif" width="8" height="1">See Also</strong></font></td></tr></table>
+<TABLE BORDER="0" CELLPADDING="10" CELLSPACING="0" WIDTH="100%"><TR><TD>
+<FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="1" CLASS="G10" COLOR="#666666">
+<A HREF="index.html">Index</A><BR>
+<A HREF="introduction.html">Introduction</A><BR>
+<A HREF="detailedimplementation.html">Detailed Implementation</A><BR>
+<A HREF="tutorial.html">Tutorial</A><BR>
+<A HREF="compilersetup.html">Compiler Setup</A><BR>
+</FONT>
+</TD></TR></TABLE>
+</BODY>
+</HTML>
