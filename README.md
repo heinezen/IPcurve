@@ -24,8 +24,9 @@ Here is an overview of what is available in this repository.
 | 0.95     | IPCurve095Win32.zip<br>IPCurve095Linux.zip<br>IPCurve095OSX.zip <br> IPCurve095Source.zip | no      | no      | no    | no      |
 | 0.96     | IPCurve096Win32.zip<br>IPCurve096Linux.zip<br>IPCurve096OSX.zip <br> IPCurve096Source.zip             | no      | no      | no    | no      |
 | 0.99     | IPCurve0999Win32.zip<br>IPCurve0999Linux.zip<br>IPCurve0999OSX.zip <br> IPCurve0999Source.zip             | **yes** | no      | no    | no      |
-| 1.0      | IPCurve100Win32.zip<br>IPCurve100Linux.zip<br>IPCurve100OSX.zip <br> IPCurve100Source.zip <br> ipcurve_1.0_i386.deb | **yes** | **yes** | no    | no      |
+| 1.0      | IPCurve100Win32.zip<br>IPCurve100Linux.zip<br>IPCurve100OSX.zip <br> IPCurve100Source.zip <br> ipcurve_1.0_i386.deb | **yes** | **yes** | no    | **yes**      |
+| 1.1      | none                    | -       | -       | -    | **yes** |
 
 Every contribution is appreciated.
 
-![kurve](https://raw.githubusercontent.com/heinezen/IPcurve/master/screenshots/schild.png "Das "Achtung, Kurve" Schild:")
+![kurve](https://raw.githubusercontent.com/heinezen/IPcurve/master/screenshots/schild.png "Das Achtung, Kurve Schild")
