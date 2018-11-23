@@ -6,7 +6,7 @@ Rehost of the original game by FiLE.
 
 IPcurve is a multiplayer game similar to *Achtung, die Kurve!* (also known as *Zatacka*). Its features include local and network play, specials, player profiles and a great range of configurable options. Both German and English are supported languages.
 
-## Is this a complete repository of the orininal files?
+## Is this a complete repository of the original files?
 
 Unfortunately it is not! I'm not the original author of IPcurve and the official hosting platform is offline since 2013. [Wayback Machine](https://web.archive.org/web/20080810194009*/http://ozone.game-host.org/kurve/) has archived the website, but neither the sources nor the binaries.
 
@@ -25,7 +25,7 @@ Here is an overview of what is available in this repository.
 | 0.96     | IPCurve096Win32.zip<br>IPCurve096Linux.zip<br>IPCurve096OSX.zip <br> IPCurve096Source.zip             | no      | no      | no    | no      |
 | 0.99     | IPCurve0999Win32.zip<br>IPCurve0999Linux.zip<br>IPCurve0999OSX.zip <br> IPCurve0999Source.zip             | **yes** | no      | no    | no      |
 | 1.0      | IPCurve100Win32.zip<br>IPCurve100Linux.zip<br>IPCurve100OSX.zip <br> IPCurve100Source.zip <br> ipcurve_1.0_i386.deb | **yes** | **yes** | no    | **yes**      |
-| 1.1      | none                    | -       | -       | -    | **yes** |
+| 1.1      | only beta release       | -       | -       | -    | **yes** |
 
 Every contribution is appreciated.
 
