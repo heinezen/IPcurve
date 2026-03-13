@@ -1,0 +1,573 @@
+<?xml version="1.0"?>
+<CONFIG>
+  <ProjectOptions>
+    <PathDelim Value="/"/>
+    <Version Value="5"/>
+    <General>
+      <Flags>
+        <MainUnitHasUsesSectionForAllUnits Value="False"/>
+        <MainUnitHasCreateFormStatements Value="False"/>
+        <MainUnitHasTitleStatement Value="False"/>
+      </Flags>
+      <MainUnit Value="0"/>
+      <ActiveEditorIndexAtStart Value="2"/>
+      <IconPath Value="./"/>
+      <TargetFileExt Value=""/>
+      <Title Value="kurveSdl"/>
+    </General>
+    <JumpHistory Count="0" HistoryIndex="-1"/>
+    <Units Count="56">
+      <Unit0>
+        <CursorPos X="1" Y="56"/>
+        <EditorIndex Value="0"/>
+        <Filename Value="kurveSdl.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <Loaded Value="True"/>
+        <TopLine Value="55"/>
+        <UsageCount Value="28"/>
+      </Unit0>
+      <Unit1>
+        <CursorPos X="19" Y="25"/>
+        <EditorIndex Value="1"/>
+        <Filename Value="constants.pas"/>
+        <IsPartOfProject Value="True"/>
+        <Loaded Value="True"/>
+        <TopLine Value="16"/>
+        <UnitName Value="constants"/>
+        <UsageCount Value="28"/>
+      </Unit1>
+      <Unit2>
+        <CursorPos X="17" Y="37"/>
+        <EditorIndex Value="2"/>
+        <Filename Value="schlangen.pas"/>
+        <IsPartOfProject Value="True"/>
+        <Loaded Value="True"/>
+        <TopLine Value="37"/>
+        <UnitName Value="schlangen"/>
+        <UsageCount Value="28"/>
+      </Unit2>
+      <Unit3>
+        <CursorPos X="24" Y="271"/>
+        <Filename Value="engine.pas"/>
+        <IsPartOfProject Value="True"/>
+        <TopLine Value="244"/>
+        <UnitName Value="engine"/>
+        <UsageCount Value="28"/>
+      </Unit3>
+      <Unit4>
+        <CursorPos X="1" Y="881"/>
+        <EditorIndex Value="3"/>
+        <Filename Value="gamemenu.pas"/>
+        <IsPartOfProject Value="True"/>
+        <Loaded Value="True"/>
+        <TopLine Value="860"/>
+        <UnitName Value="gamemenu"/>
+        <UsageCount Value="28"/>
+      </Unit4>
+      <Unit5>
+        <CursorPos X="1" Y="57"/>
+        <EditorIndex Value="4"/>
+        <Filename Value="grafik.pas"/>
+        <IsPartOfProject Value="True"/>
+        <Loaded Value="True"/>
+        <TopLine Value="43"/>
+        <UnitName Value="grafik"/>
+        <UsageCount Value="28"/>
+      </Unit5>
+      <Unit6>
+        <CursorPos X="1" Y="1"/>
+        <EditorIndex Value="5"/>
+        <Filename Value="ki.pas"/>
+        <IsPartOfProject Value="True"/>
+        <Loaded Value="True"/>
+        <TopLine Value="1"/>
+        <UnitName Value="ki"/>
+        <UsageCount Value="28"/>
+      </Unit6>
+      <Unit7>
+        <CursorPos X="27" Y="6"/>
+        <EditorIndex Value="6"/>
+        <Filename Value="log.pas"/>
+        <IsPartOfProject Value="True"/>
+        <Loaded Value="True"/>
+        <TopLine Value="1"/>
+        <UnitName Value="log"/>
+        <UsageCount Value="28"/>
+      </Unit7>
+      <Unit8>
+        <CursorPos X="39" Y="31"/>
+        <EditorIndex Value="7"/>
+        <Filename Value="maps.pas"/>
+        <IsPartOfProject Value="True"/>
+        <Loaded Value="True"/>
+        <TopLine Value="1"/>
+        <UnitName Value="maps"/>
+        <UsageCount Value="28"/>
+      </Unit8>
+      <Unit9>
+        <CursorPos X="7" Y="182"/>
+        <EditorIndex Value="8"/>
+        <Filename Value="menu.pas"/>
+        <IsPartOfProject Value="True"/>
+        <Loaded Value="True"/>
+        <TopLine Value="128"/>
+        <UnitName Value="menu"/>
+        <UsageCount Value="28"/>
+      </Unit9>
+      <Unit10>
+        <CursorPos X="1" Y="802"/>
+        <Filename Value="/home/file_tarom/bbe_n/gfx/floorsel.pas"/>
+        <ComponentName Value="Form3"/>
+        <ResourceFilename Value="/home/file_tarom/bbe_n/gfx/floorsel.lrs"/>
+        <TopLine Value="800"/>
+        <UnitName Value="floorsel"/>
+        <UsageCount Value="10"/>
+      </Unit10>
+      <Unit11>
+        <CursorPos X="3" Y="19"/>
+        <Filename Value="/home/file_tarom/bbe_n/gfx/action.pas"/>
+        <ComponentName Value="Form7"/>
+        <ResourceFilename Value="/home/file_tarom/bbe_n/gfx/action.lrs"/>
+        <TopLine Value="2"/>
+        <UnitName Value="action"/>
+        <UsageCount Value="10"/>
+      </Unit11>
+      <Unit12>
+        <CursorPos X="1" Y="1"/>
+        <Filename Value="/home/file_tarom/bbe_n/gfx/ale.lfm"/>
+        <SyntaxHighlighter Value="LFM"/>
+        <TopLine Value="1"/>
+        <UsageCount Value="10"/>
+      </Unit12>
+      <Unit13>
+        <CursorPos X="1" Y="1"/>
+        <Filename Value="/home/file_tarom/bbe_n/gfx/credits.pas"/>
+        <ComponentName Value="Form17"/>
+        <ResourceFilename Value="/home/file_tarom/bbe_n/gfx/credits.lrs"/>
+        <TopLine Value="1"/>
+        <UnitName Value="credits"/>
+        <UsageCount Value="10"/>
+      </Unit13>
+      <Unit14>
+        <CursorPos X="1" Y="1"/>
+        <Filename Value="/home/file_tarom/bbe_n/gfx/ale.pas"/>
+        <ComponentName Value="Form22"/>
+        <ResourceFilename Value="/home/file_tarom/bbe_n/gfx/ale.lrs"/>
+        <TopLine Value="1"/>
+        <UnitName Value="ale"/>
+        <UsageCount Value="10"/>
+      </Unit14>
+      <Unit15>
+        <CursorPos X="1" Y="1"/>
+        <Filename Value="/home/file_tarom/bbe_n/gfx/aleedit.pas"/>
+        <ComponentName Value="Form23"/>
+        <ResourceFilename Value="/home/file_tarom/bbe_n/gfx/aleedit.lrs"/>
+        <TopLine Value="1"/>
+        <UnitName Value="aleedit"/>
+        <UsageCount Value="10"/>
+      </Unit15>
+      <Unit16>
+        <CursorPos X="12" Y="1"/>
+        <Filename Value="/home/file_tarom/bbe_n/gfx/attrib.pas"/>
+        <ComponentName Value="prop"/>
+        <ResourceFilename Value="/home/file_tarom/bbe_n/gfx/attrib.lrs"/>
+        <TopLine Value="1"/>
+        <UnitName Value="attrib"/>
+        <UsageCount Value="10"/>
+      </Unit16>
+      <Unit17>
+        <CursorPos X="1" Y="1"/>
+        <Filename Value="/home/file_tarom/bbe_n/gfx/mapprop.pas"/>
+        <ComponentName Value="Form6"/>
+        <ResourceFilename Value="/home/file_tarom/bbe_n/gfx/mapprop.lrs"/>
+        <TopLine Value="1"/>
+        <UnitName Value="mapprop"/>
+        <UsageCount Value="10"/>
+      </Unit17>
+      <Unit18>
+        <CursorPos X="1" Y="1"/>
+        <Filename Value="/home/file_tarom/bbe_n/gfx/docattr.pas"/>
+        <ComponentName Value="Form12"/>
+        <ResourceFilename Value="/home/file_tarom/bbe_n/gfx/docattr.lrs"/>
+        <TopLine Value="1"/>
+        <UnitName Value="docattr"/>
+        <UsageCount Value="10"/>
+      </Unit18>
+      <Unit19>
+        <CursorPos X="1" Y="1"/>
+        <Filename Value="/home/file_tarom/bbe_n/gfx/foursw.pas"/>
+        <ComponentName Value="Form8"/>
+        <ResourceFilename Value="/home/file_tarom/bbe_n/gfx/foursw.lrs"/>
+        <TopLine Value="1"/>
+        <UnitName Value="foursw"/>
+        <UsageCount Value="10"/>
+      </Unit19>
+      <Unit20>
+        <CursorPos X="1" Y="1"/>
+        <Filename Value="/home/file_tarom/bbe_n/gfx/itemsel.pas"/>
+        <ComponentName Value="Form5"/>
+        <ResourceFilename Value="/home/file_tarom/bbe_n/gfx/itemsel.lrs"/>
+        <TopLine Value="1"/>
+        <UnitName Value="itemsel"/>
+        <UsageCount Value="10"/>
+      </Unit20>
+      <Unit21>
+        <CursorPos X="1" Y="1"/>
+        <Filename Value="/home/file_tarom/bbe_n/gfx/vortex.pas"/>
+        <ComponentName Value="Form9"/>
+        <TopLine Value="1"/>
+        <UnitName Value="vortex"/>
+        <UsageCount Value="10"/>
+      </Unit21>
+      <Unit22>
+        <CursorPos X="1" Y="1"/>
+        <Filename Value="/home/file_tarom/bbe_n/gfx/mtopa.pas"/>
+        <ComponentName Value="Form11"/>
+        <TopLine Value="1"/>
+        <UnitName Value="mtopa"/>
+        <UsageCount Value="10"/>
+      </Unit22>
+      <Unit23>
+        <CursorPos X="1" Y="1"/>
+        <Filename Value="/home/file_tarom/bbe_n/gfx/multi.pas"/>
+        <ComponentName Value="Form13"/>
+        <ResourceFilename Value="/home/file_tarom/bbe_n/gfx/multi.lrs"/>
+        <TopLine Value="1"/>
+        <UnitName Value="multi"/>
+        <UsageCount Value="10"/>
+      </Unit23>
+      <Unit24>
+        <CursorPos X="1" Y="1"/>
+        <Filename Value="/home/file_tarom/bbe_n/gfx/murora.pas"/>
+        <ComponentName Value="Form14"/>
+        <ResourceFilename Value="/home/file_tarom/bbe_n/gfx/murora.lrs"/>
+        <TopLine Value="1"/>
+        <UnitName Value="murora"/>
+        <UsageCount Value="10"/>
+      </Unit24>
+      <Unit25>
+        <CursorPos X="35" Y="10"/>
+        <Filename Value="/home/file_tarom/bbe_n/gfx/npaattr.pas"/>
+        <ComponentName Value="Form10"/>
+        <ResourceFilename Value="/home/file_tarom/bbe_n/gfx/npaattr.lrs"/>
+        <TopLine Value="1"/>
+        <UnitName Value="npaattr"/>
+        <UsageCount Value="10"/>
+      </Unit25>
+      <Unit26>
+        <CursorPos X="1" Y="1"/>
+        <Filename Value="/home/file_tarom/bbe_n/gfx/selfsstate.pas"/>
+        <ComponentName Value="Form21"/>
+        <ResourceFilename Value="/home/file_tarom/bbe_n/gfx/selfsstate.lrs"/>
+        <TopLine Value="1"/>
+        <UnitName Value="selfsstate"/>
+        <UsageCount Value="10"/>
+      </Unit26>
+      <Unit27>
+        <CursorPos X="1" Y="1"/>
+        <Filename Value="/home/file_tarom/bbe_n/gfx/spritesel.pas"/>
+        <ComponentName Value="Form2"/>
+        <ResourceFilename Value="/home/file_tarom/bbe_n/gfx/spritesel.lrs"/>
+        <TopLine Value="1"/>
+        <UnitName Value="spritesel"/>
+        <UsageCount Value="10"/>
+      </Unit27>
+      <Unit28>
+        <CursorPos X="1" Y="1"/>
+        <Filename Value="/home/file_tarom/bbe_n/gfx/stonesel.pas"/>
+        <ComponentName Value="form4"/>
+        <ResourceFilename Value="/home/file_tarom/bbe_n/gfx/stonesel.lrs"/>
+        <TopLine Value="1"/>
+        <UnitName Value="stonesel"/>
+        <UsageCount Value="10"/>
+      </Unit28>
+      <Unit29>
+        <CursorPos X="1" Y="1"/>
+        <Filename Value="/home/file_tarom/bbe_n/xmlinfo.pas"/>
+        <ComponentName Value="Form27"/>
+        <ResourceFilename Value="/home/file_tarom/bbe_n/xmlinfo.lrs"/>
+        <TopLine Value="1"/>
+        <UnitName Value="xmlinfo"/>
+        <UsageCount Value="10"/>
+      </Unit29>
+      <Unit30>
+        <CursorPos X="1" Y="1"/>
+        <Filename Value="/home/file_tarom/bbe_n/bbedbg.pas"/>
+        <ComponentName Value="Form31"/>
+        <ResourceFilename Value="/home/file_tarom/bbe_n/bbedbg.lrs"/>
+        <TopLine Value="1"/>
+        <UnitName Value="bbedbg"/>
+        <UsageCount Value="10"/>
+      </Unit30>
+      <Unit31>
+        <CursorPos X="1" Y="1"/>
+        <Filename Value="/home/file_tarom/bbe_n/bbelua.pas"/>
+        <TopLine Value="1"/>
+        <UnitName Value="bbelua"/>
+        <UsageCount Value="10"/>
+      </Unit31>
+      <Unit32>
+        <CursorPos X="1" Y="1"/>
+        <Filename Value="/home/file_tarom/bbe_n/check.pas"/>
+        <ComponentName Value="Form13"/>
+        <ResourceFilename Value="/home/file_tarom/bbe_n/check.lrs"/>
+        <TopLine Value="1"/>
+        <UnitName Value="check"/>
+        <UsageCount Value="10"/>
+      </Unit32>
+      <Unit33>
+        <CursorPos X="1" Y="1"/>
+        <Filename Value="/home/file_tarom/bbe_n/connect.pas"/>
+        <ComponentName Value="Form18"/>
+        <ResourceFilename Value="/home/file_tarom/bbe_n/connect.lrs"/>
+        <TopLine Value="1"/>
+        <UnitName Value="connect"/>
+        <UsageCount Value="10"/>
+      </Unit33>
+      <Unit34>
+        <CursorPos X="1" Y="1"/>
+        <Filename Value="/home/file_tarom/bbe_n/console.pas"/>
+        <ComponentName Value="Form15"/>
+        <TopLine Value="1"/>
+        <UnitName Value="console"/>
+        <UsageCount Value="10"/>
+      </Unit34>
+      <Unit35>
+        <CursorPos X="1" Y="1"/>
+        <Filename Value="/home/file_tarom/bbe_n/edit1.pas"/>
+        <ComponentName Value="Form1"/>
+        <ResourceFilename Value="/home/file_tarom/bbe_n/edit1.lrs"/>
+        <TopLine Value="1"/>
+        <UnitName Value="edit1"/>
+        <UsageCount Value="10"/>
+      </Unit35>
+      <Unit36>
+        <CursorPos X="1" Y="1"/>
+        <Filename Value="/home/file_tarom/bbe_n/eoe.pas"/>
+        <ComponentName Value="Form25"/>
+        <ResourceFilename Value="/home/file_tarom/bbe_n/eoe.lrs"/>
+        <TopLine Value="1"/>
+        <UnitName Value="eoe"/>
+        <UsageCount Value="10"/>
+      </Unit36>
+      <Unit37>
+        <CursorPos X="1" Y="1"/>
+        <Filename Value="/home/file_tarom/bbe_n/gridtypes.pas"/>
+        <TopLine Value="1"/>
+        <UnitName Value="gridtypes"/>
+        <UsageCount Value="10"/>
+      </Unit37>
+      <Unit38>
+        <CursorPos X="1" Y="1"/>
+        <Filename Value="/home/file_tarom/bbe_n/horse.pas"/>
+        <ComponentName Value="Form29"/>
+        <ResourceFilename Value="/home/file_tarom/bbe_n/horse.lrs"/>
+        <TopLine Value="1"/>
+        <UnitName Value="horse"/>
+        <UsageCount Value="10"/>
+      </Unit38>
+      <Unit39>
+        <CursorPos X="1" Y="1"/>
+        <Filename Value="/home/file_tarom/bbe_n/ibmutils.pas"/>
+        <TopLine Value="1"/>
+        <UnitName Value="ibmutils"/>
+        <UsageCount Value="10"/>
+      </Unit39>
+      <Unit40>
+        <CursorPos X="1" Y="1"/>
+        <Filename Value="/home/file_tarom/bbe_n/levpack.pas"/>
+        <ComponentName Value="Form20"/>
+        <ResourceFilename Value="/home/file_tarom/bbe_n/levpack.lrs"/>
+        <TopLine Value="1"/>
+        <UnitName Value="levpack"/>
+        <UsageCount Value="10"/>
+      </Unit40>
+      <Unit41>
+        <CursorPos X="1" Y="1"/>
+        <Filename Value="/home/file_tarom/bbe_n/luaedit.pas"/>
+        <ComponentName Value="Form32"/>
+        <ResourceFilename Value="/home/file_tarom/bbe_n/luaedit.lrs"/>
+        <TopLine Value="1"/>
+        <UnitName Value="luaedit"/>
+        <UsageCount Value="10"/>
+      </Unit41>
+      <Unit42>
+        <CursorPos X="1" Y="1"/>
+        <Filename Value="/home/file_tarom/bbe_n/magnet.pas"/>
+        <ComponentName Value="Form23"/>
+        <TopLine Value="1"/>
+        <UnitName Value="magnet"/>
+        <UsageCount Value="10"/>
+      </Unit42>
+      <Unit43>
+        <CursorPos X="1" Y="1"/>
+        <Filename Value="/home/file_tarom/bbe_n/minimap.pas"/>
+        <ComponentName Value="Form26"/>
+        <ResourceFilename Value="/home/file_tarom/bbe_n/minimap.lrs"/>
+        <TopLine Value="1"/>
+        <UnitName Value="minimap"/>
+        <UsageCount Value="10"/>
+      </Unit43>
+      <Unit44>
+        <CursorPos X="1" Y="1"/>
+        <Filename Value="/home/file_tarom/bbe_n/option.pas"/>
+        <ComponentName Value="Form15"/>
+        <ResourceFilename Value="/home/file_tarom/bbe_n/option.lrs"/>
+        <TopLine Value="1"/>
+        <UnitName Value="option"/>
+        <UsageCount Value="10"/>
+      </Unit44>
+      <Unit45>
+        <CursorPos X="1" Y="1"/>
+        <Filename Value="/home/file_tarom/bbe_n/oxcol.pas"/>
+        <ComponentName Value="oxtempl"/>
+        <ResourceFilename Value="/home/file_tarom/bbe_n/oxcol.lrs"/>
+        <TopLine Value="1"/>
+        <UnitName Value="oxcol"/>
+        <UsageCount Value="10"/>
+      </Unit45>
+      <Unit46>
+        <CursorPos X="1" Y="1"/>
+        <Filename Value="/home/file_tarom/bbe_n/oxyd.pas"/>
+        <TopLine Value="1"/>
+        <UnitName Value="oxyd"/>
+        <UsageCount Value="10"/>
+      </Unit46>
+      <Unit47>
+        <CursorPos X="1" Y="1"/>
+        <Filename Value="/home/file_tarom/bbe_n/oxyd_mapping.pas"/>
+        <TopLine Value="1"/>
+        <UnitName Value="oxyd_mapping"/>
+        <UsageCount Value="10"/>
+      </Unit47>
+      <Unit48>
+        <CursorPos X="1" Y="1"/>
+        <Filename Value="/home/file_tarom/bbe_n/peroxmap.pas"/>
+        <ComponentName Value="Form30"/>
+        <ResourceFilename Value="/home/file_tarom/bbe_n/peroxmap.lrs"/>
+        <TopLine Value="1"/>
+        <UnitName Value="peroxmap"/>
+        <UsageCount Value="10"/>
+      </Unit48>
+      <Unit49>
+        <CursorPos X="1" Y="1"/>
+        <Filename Value="/home/file_tarom/bbe_n/previw.pas"/>
+        <ComponentName Value="Form16"/>
+        <ResourceFilename Value="/home/file_tarom/bbe_n/previw.lrs"/>
+        <TopLine Value="1"/>
+        <UnitName Value="previw"/>
+        <UsageCount Value="10"/>
+      </Unit49>
+      <Unit50>
+        <CursorPos X="24" Y="30"/>
+        <Filename Value="/home/file_tarom/bbe_n/signallayer.pas"/>
+        <ComponentName Value="Form24"/>
+        <ResourceFilename Value="/home/file_tarom/bbe_n/signallayer.lrs"/>
+        <TopLine Value="1"/>
+        <UnitName Value="signallayer"/>
+        <UsageCount Value="10"/>
+      </Unit50>
+      <Unit51>
+        <CursorPos X="1" Y="1"/>
+        <Filename Value="/home/file_tarom/bbe_n/signerr.pas"/>
+        <ComponentName Value="Form19"/>
+        <ResourceFilename Value="/home/file_tarom/bbe_n/signerr.lrs"/>
+        <TopLine Value="1"/>
+        <UnitName Value="signerr"/>
+        <UsageCount Value="10"/>
+      </Unit51>
+      <Unit52>
+        <CursorPos X="1" Y="1"/>
+        <Filename Value="/home/file_tarom/bbe_n/splashscreen.pas"/>
+        <ComponentName Value="splash"/>
+        <ResourceFilename Value="/home/file_tarom/bbe_n/splashscreen.lrs"/>
+        <TopLine Value="1"/>
+        <UnitName Value="splashscreen"/>
+        <UsageCount Value="10"/>
+      </Unit52>
+      <Unit53>
+        <CursorPos X="1" Y="1"/>
+        <Filename Value="/home/file_tarom/bbe_n/tileset.pas"/>
+        <ComponentName Value="Form28"/>
+        <ResourceFilename Value="/home/file_tarom/bbe_n/tileset.lrs"/>
+        <TopLine Value="1"/>
+        <UnitName Value="tileset"/>
+        <UsageCount Value="10"/>
+      </Unit53>
+      <Unit54>
+        <CursorPos X="1" Y="1"/>
+        <Filename Value="/home/file_tarom/bbe_n/typevar.pas"/>
+        <TopLine Value="1"/>
+        <UnitName Value="typevar"/>
+        <UsageCount Value="10"/>
+      </Unit54>
+      <Unit55>
+        <CursorPos X="1" Y="1"/>
+        <Filename Value="/home/file_tarom/bbe_n/wait.pas"/>
+        <ComponentName Value="waitf"/>
+        <ResourceFilename Value="/home/file_tarom/bbe_n/wait.lrs"/>
+        <TopLine Value="1"/>
+        <UnitName Value="wait"/>
+        <UsageCount Value="10"/>
+      </Unit55>
+    </Units>
+    <PublishOptions>
+      <Version Value="2"/>
+      <IgnoreBinaries Value="False"/>
+      <IncludeFileFilter Value="*.(pas|pp|inc|lfm|lpr|lrs|lpi|lpk|sh|xml)"/>
+      <ExcludeFileFilter Value="*.(bak|ppu|ppw|o|so);*~;backup"/>
+    </PublishOptions>
+    <RunParams>
+      <local>
+        <FormatVersion Value="1"/>
+        <LaunchingApplication PathPlusParams="/usr/X11R6/bin/xterm -T 'Lazarus Run Output' -e $(LazarusDir)/tools/runwait.sh $(TargetCmdLine)"/>
+      </local>
+    </RunParams>
+    <RequiredPackages Count="1">
+      <Item1>
+        <PackageName Value="LCL"/>
+      </Item1>
+    </RequiredPackages>
+  </ProjectOptions>
+  <CompilerOptions>
+    <Version Value="4"/>
+    <SearchPaths>
+      <SrcPath Value="$(LazarusDir)/lcl/;$(LazarusDir)/lcl/interfaces/$(LCLWidgetType)/"/>
+    </SearchPaths>
+    <Parsing>
+      <SymantecChecking>
+        <DelphiCompat Value="True"/>
+      </SymantecChecking>
+    </Parsing>
+    <CodeGeneration>
+      <Generate Value="Faster"/>
+      <TargetProcessor Value="3"/>
+      <Optimizations>
+        <VariablesInRegisters Value="True"/>
+        <UncertainOptimizations Value="True"/>
+        <OptimizationLevel Value="3"/>
+      </Optimizations>
+      <TargetOS Value="Linux"/>
+    </CodeGeneration>
+    <Linking>
+      <Options>
+        <Win32>
+          <GraphicApplication Value="True"/>
+        </Win32>
+      </Options>
+    </Linking>
+    <Other>
+      <CompilerPath Value="$(CompPath)"/>
+    </Other>
+  </CompilerOptions>
+  <Debugging>
+    <Exceptions Count="2">
+      <Item1>
+        <Name Value="ECodetoolError"/>
+      </Item1>
+      <Item2>
+        <Name Value="EFOpenError"/>
+      </Item2>
+    </Exceptions>
+  </Debugging>
+</CONFIG>
